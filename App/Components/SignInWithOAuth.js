@@ -4,6 +4,7 @@ import { Button, TouchableOpacity, Text, Dimensions, View, StyleSheet } from "re
 import { useOAuth } from "@clerk/clerk-expo";
 import { useWarmUpBrowser } from "../hooks/warmUpBrowser";
 import Colors from './Shared/Colors';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function SignInWithOAuth() {
   useWarmUpBrowser();
@@ -35,3 +36,24 @@ export default function SignInWithOAuth() {
 
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  socialButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 16,
+    marginTop: 20,
+    borderRadius: 90,
+    width: Dimensions.get('screen').width * 0.8,
+    justifyContent: 'center',
+  },
+  socialButtonText: {
+    fontSize: 17,
+    color: Colors.white,
+    marginLeft: 10,
+  },
+});
