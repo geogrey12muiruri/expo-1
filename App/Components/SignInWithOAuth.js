@@ -3,7 +3,7 @@ import * as WebBrowser from "expo-web-browser";
 import { Button, TouchableOpacity, Text, Dimensions, View, StyleSheet } from "react-native";
 import { useOAuth } from "@clerk/clerk-expo";
 import { useWarmUpBrowser } from "../hooks/warmUpBrowser";
-import Colors from './Shared/Colors'
+import Colors from './Shared/Colors';
 
 export default function SignInWithOAuth() {
   useWarmUpBrowser();
