@@ -1,49 +1,67 @@
+import { View, Text, StyleSheet } from 'react-native';
 import React from 'react';
-import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
-import homeImage from '../../assets/images/welcome.png'
-import Colors from '../Components/Shared/Colors';
-import SignInWithOAuth from '../Components/SignInWithOAuth';
+import Onboarding from 'react-native-onboarding-swiper';
+import { useNavigation } from '@react-navigation/native';
 
-const Login = () => {
-    return (
-        <View style={{ alignItems: 'center', backgroundColor: Colors.ligh_gray }}>
+export default function Login() {
+  const navigation = useNavigation();
 
-            <Image
-                source={homeImage}
-                style={styles.appImage}
-            />
-
-            <View style={{
-                backgroundColor: Colors.white, padding: 25, alignItems: 'center', marginTop: -50,
-                borderTopLeftRadius: 20, borderTopRightRadius: 20
-            }}>
-                <Text style={styles.heading}>Your Ultimate Doctor</Text>
-                <Text style={styles.heading}>Booking App</Text>
-                <Text style={{ marginTop: 20, textAlign: 'center' }}>
-                    Book Appointements Effortlessly and manage your health journey
-                </Text>
-
-                {/* sign in button */}
-                <SignInWithOAuth />
-            </View>
-        </View>
-    )
+  return (
+    <View style={styles.container}>
+      <Onboarding 
+      containerStyles={{paddingHorizontal:15}}
+        onSkip={() => navigation.navigate('Home')}
+        onDone={() => navigation.navigate('Home')}
+        pages={[
+          {
+            backgroundColor: '#a6e4d0',
+            image: (
+              <View>
+                <Text>Medplus Supat</Text>
+              </View>
+            ),
+            title: 'Bridging Health',
+            subtitle: 'Your Next Appointment is just a click away',
+          },
+          {
+            backgroundColor: '#a6e4d0',
+            image: (
+              <View>
+                <Text>Medplus Supat</Text>
+              </View>
+            ),
+            title: 'Engage',
+            subtitle: 'What is your health concern? Welcome to Our Community',
+          },
+            {
+                backgroundColor: '#a6e4d0',
+                image: (
+                <View>
+                    <Text>Medplus Supat</Text>
+                </View>
+                ),
+                title: 'Learn',
+                subtitle: 'We let you take control of your health', 
+            },
+          {
+            backgroundColor: '#a6e4d0',
+            image: (
+              <View>
+                <Text>Medplus Supat</Text>
+              </View>
+            ),
+            title: 'Onboarding',
+            subtitle: 'Done with React Native Onboarding Swiper',
+          },
+        ]}
+      />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-    appImage: {
-        width: 300,
-        height: 500,
-        objectFit: 'cover',
-        marginTop: 50,
-        borderRadius: 20,
-        borderWidth: 6,
-        borderColor: '#000'
-    },
-    heading: {
-        fontSize: 28,
-        fontWeight: 'bold'
-    }
-})
-
-export default Login;
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+});

@@ -4,7 +4,6 @@ import { Text, View, StyleSheet } from "react-native";
 import { useFonts } from 'expo-font';
 import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
 import { ClerkProvider, ClerkLoaded, SignedIn, SignedOut } from "@clerk/clerk-expo";
-
 import Login from './App/Screens/Login';
 import { NavigationContainer } from '@react-navigation/native';
 import TabNavigation from './Navigations/TabNavigation';
@@ -51,19 +50,18 @@ export default function Index() {
     <ClerkProvider publishableKey={"pk_test_bmV4dC10ZXJyYXBpbi03OS5jbGVyay5hY2NvdW50cy5kZXYk"}>
       <ClerkLoaded>
         <SafeAreaProvider>
-          <SafeAreaView style={styles.container}>
-            <StatusBar hidden />
-            <SignedIn>
-            <NavigationContainer>
-            <TabNavigation />
+          <NavigationContainer>
+            <SafeAreaView style={styles.container}>
+              <StatusBar hidden />
+              <SignedIn>
+                <TabNavigation />
+              </SignedIn>
+              <SignedOut>
+                <Login />
+              </SignedOut>
+              <Toast />
+            </SafeAreaView>
           </NavigationContainer>
-             
-            </SignedIn>
-            <SignedOut>
-              <Login />
-            </SignedOut>
-            <Toast />
-          </SafeAreaView>
         </SafeAreaProvider>
       </ClerkLoaded>
     </ClerkProvider>
