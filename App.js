@@ -2,9 +2,10 @@ import * as SecureStore from 'expo-secure-store';
 import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { useFonts } from 'expo-font';
-import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { ClerkProvider, ClerkLoaded, SignedIn, SignedOut } from "@clerk/clerk-expo";
-import Login from './App/Screens/Login';
+
+import Login from './App/Screens/LoginScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import TabNavigation from './Navigations/TabNavigation';
 import { StatusBar } from 'expo-status-bar';
@@ -50,18 +51,18 @@ export default function Index() {
     <ClerkProvider publishableKey={"pk_test_bmV4dC10ZXJyYXBpbi03OS5jbGVyay5hY2NvdW50cy5kZXYk"}>
       <ClerkLoaded>
         <SafeAreaProvider>
-          <NavigationContainer>
-            <SafeAreaView style={styles.container}>
-              <StatusBar hidden />
+          <SafeAreaView style={styles.container}>
+            <StatusBar hidden />
+            <NavigationContainer>
               <SignedIn>
                 <TabNavigation />
               </SignedIn>
               <SignedOut>
                 <Login />
               </SignedOut>
-              <Toast />
-            </SafeAreaView>
-          </NavigationContainer>
+            </NavigationContainer>
+            <Toast />
+          </SafeAreaView>
         </SafeAreaProvider>
       </ClerkLoaded>
     </ClerkProvider>
