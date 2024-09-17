@@ -10,23 +10,56 @@ import Colors from '../Components/Shared/Colors';
 
 WebBrowser.maybeCompleteAuthSession();
 
-export default function LoginScreen() {
+export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
 
   const { startOAuthFlow: startGoogleOAuthFlow } = useOAuth({ strategy: 'oauth_google' });
 
-  const handleLogin = () => {
-    if (email === 'test@example.com' && password === 'password') {
-      Alert.alert('Login Successful', 'Welcome back!');
-    } else {
-      Alert.alert('Login Failed', 'Invalid email or password');
+  const validateForm = () => {
+    if (!email || !password) {
+      Alert.alert('Validation Error', 'Email and password are required.');
+      return false;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      Alert.alert('Validation Error', 'Please enter a valid email address.');
+      return false;
+    }
+    return true;
+  };
+
+  const handleLogin = async () => {
+    if (!validateForm()) return;
+
+    try {
+      const response = await GlobalApi.login({ email, password });
+      if (response.data) {
+        Alert.alert('Login Successful', 'Welcome back!');
+        // Handle successful login, e.g., navigate to the home screen
+        navigation.navigate('Home');
+      } else {
+        Alert.alert('Login Failed', 'Invalid email or password');
+      }
+    } catch (error) {
+      console.error('Login error', error);
+      Alert.alert('Login Failed', 'An error occurred. Please try again.');
     }
   };
 
-  const handleForgotPassword = () => {
-    Alert.alert('Forgot Password', 'Password reset link sent to your email.');
+  const handleForgotPassword = async () => {
+    try {
+      const response = await GlobalApi.forgotPassword({ email });
+      if (response.data) {
+        Alert.alert('Forgot Password', 'Password reset link sent to your email.');
+      } else {
+        Alert.alert('Forgot Password', 'Failed to send password reset link.');
+      }
+    } catch (error) {
+      console.error('Forgot password error', error);
+      Alert.alert('Forgot Password', 'An error occurred. Please try again.');
+    }
   };
 
   const handleOAuthLogin = async (startOAuthFlow) => {
@@ -42,6 +75,7 @@ export default function LoginScreen() {
         if (response.data) {
           // Handle successful login
           Alert.alert('Login Successful', 'Welcome back!');
+          navigation.navigate('Home');
         } else {
           // Handle login failure
           Alert.alert('Login Failed', 'Unable to login with Google');
@@ -49,6 +83,7 @@ export default function LoginScreen() {
       }
     } catch (err) {
       console.error("OAuth error", err);
+      Alert.alert('Login Failed', 'An error occurred. Please try again.');
     }
   };
 
@@ -66,7 +101,7 @@ export default function LoginScreen() {
         <Image source={require('../../assets/topVector.png')} style={styles.topImage} />
       </View>
       <View style={styles.helloContainer}>
-        <Text style={styles.helloText}>Hello</Text>
+        <Text style={styles.helloText}>Welcome Back</Text>
       </View>
       <View>
         <Text style={styles.signInText}>Sign in to your account</Text>
@@ -101,7 +136,7 @@ export default function LoginScreen() {
           iconStyle={{ borderColor: "red" }}
           innerIconStyle={{ borderWidth: 2 }}
           textStyle={{ fontFamily: "JosefinSans-Regular" }}
-          onPress={(isChecked) => { console.log(isChecked) }}
+          onPress={(isChecked) => setRememberMe(isChecked)}
         />
       </View>
       <TouchableOpacity onPress={handleForgotPassword}>
@@ -127,7 +162,7 @@ export default function LoginScreen() {
           </TouchableOpacity>
         </Animatable.View>
       </View>
-      <TouchableOpacity style={styles.signUpButton} onPress={() => Alert.alert('Sign Up', 'Navigate to sign up screen')}>
+      <TouchableOpacity style={styles.signUpButton} onPress={() => navigation.navigate('SignUp')}>
         <Text style={styles.signUpButtonText}>Don't have an account? Sign Up</Text>
       </TouchableOpacity>
     </View>

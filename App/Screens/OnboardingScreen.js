@@ -77,7 +77,7 @@ export default function OnboardingScreen({ onComplete }) {
                 </View>
                 <TouchableOpacity style={styles.loginButton} onPress={() => {
                   onComplete();
-                  navigation.navigate('login');
+                  navigation.navigate('Login'); // Ensure 'Login' matches the key used in your navigation setup
                 }}>
                   <Text style={styles.loginButtonText}>Login</Text>
                 </TouchableOpacity>

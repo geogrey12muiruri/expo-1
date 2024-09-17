@@ -5,8 +5,16 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Colors from '../Shared/Colors';
 
-
-const AllDoctorCardItem = ({ doctor }) => {
+const AllDoctorCardItem = ({ 
+  doctor = {
+    attributes: {
+      Name: '',
+      Year_of_Experience: 0,
+      categories: { data: [{ attributes: { name: '' } }] },
+      image: { data: { attributes: { formats: { thumbnail: { url: '' } } } } }
+    }
+  } 
+}) => {
   if (!doctor || !doctor.attributes) {
     return null; // or render a placeholder
   }
@@ -91,17 +99,6 @@ AllDoctorCardItem.propTypes = {
       })
     })
   })
-};
-
-AllDoctorCardItem.defaultProps = {
-  doctor: {
-    attributes: {
-      Name: '',
-      Year_of_Experience: 0,
-      categories: { data: [{ attributes: { name: '' } }] },
-      image: { data: { attributes: { formats: { thumbnail: { url: '' } } } } }
-    }
-  }
 };
 
 const styles = StyleSheet.create({
