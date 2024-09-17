@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, TextInput, Alert, ActivityIndicator } from 'react-native';
-
 import SubHeading from '../home/SubHeading';
 import moment from 'moment';
 import { useUser } from '@clerk/clerk-expo';
-
 import Toast from 'react-native-toast-message';
 import Colors from '../Shared/Colors';
 import globalApi from '../../../Services/GlobalApi';
@@ -110,6 +108,7 @@ const BookingSection = ({ clinic }) => {
 
       {/* Date */}
       <FlatList
+        
         data={next7Days}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
@@ -119,36 +118,37 @@ const BookingSection = ({ clinic }) => {
             onPress={() => setSelectedDate(item.date)}
             style={[styles.dayButton, selectedDate == item.date ? { backgroundColor: Colors.primary } : null]}
           >
-            <Text style={[{ fontFamily: 'appFont' }, selectedDate == item.date ? { color: Colors.white } : null]}>
+            <Text style={[{ fontFamily: 'Inter-Black' }, selectedDate == item.date ? { color: Colors.white } : null]}>
               {item.day}
             </Text>
-            <Text style={[{ fontFamily: 'appFont-semibold' }, selectedDate == item.date ? { color: Colors.white } : null]}>
+            <Text style={[{ fontFamily: 'Inter-Black-Semi' }, selectedDate == item.date ? { color: Colors.white } : null]}>
               {item.formattedDate}
             </Text>
           </TouchableOpacity>
         )}
-        keyExtractor={(item) => item.date.toString()}
+        
+     
       />
 
       <SubHeading subHeadingTitle={'Time'} seeAll={false} />
 
       {/* Time */}
       <FlatList
+        horizontal
         data={timeList}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-        style={{ marginBottom: 15 }}
+        keyExtractor={(item) => item.time}
         renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() => setSelectedTime(item.time)}
             style={[styles.dayButton, { paddingVertical: 16 }, selectedTime == item.time ? { backgroundColor: Colors.primary } : null]}
           >
-            <Text style={[{ fontFamily: 'appFont-semibold' }, selectedTime == item.time ? { color: Colors.white } : null]}>
+            <Text style={[{ fontFamily: 'Inter-Black-Semi' }, selectedTime == item.time ? { color: Colors.white } : null]}>
               {item.time}
             </Text>
           </TouchableOpacity>
         )}
-        keyExtractor={(item) => item.time}
+        showsHorizontalScrollIndicator={false}
+        style={{ marginBottom: 15 }}
       />
 
       <SubHeading subHeadingTitle={'Note'} seeAll={false} />
@@ -170,7 +170,7 @@ const BookingSection = ({ clinic }) => {
         {isSubmitting ? (
           <ActivityIndicator size="small" color={Colors.white} />
         ) : (
-          <Text style={{ fontSize: 20, textAlign: 'center', color: Colors.white, fontFamily: 'appFont-semibold', fontSize: 17 }}>
+          <Text style={{ fontSize: 20, textAlign: 'center', color: Colors.white, fontFamily: 'Inter-Black-Semi', fontSize: 17 }}>
             Make Appointment
           </Text>
         )}

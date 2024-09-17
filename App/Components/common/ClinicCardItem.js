@@ -25,7 +25,7 @@ export default function ClinicCardItem({ clinic }) {
             }}
           />
           <View style={{ padding: 10, backgroundColor:Colors.white, borderBottomLeftRadius:10, borderBottomRightRadius:10 }}>
-            <Text style={{ fontSize: 18, fontFamily: 'Inter-Black-semi' }}>
+            <Text style={{ fontSize: 18, fontFamily: 'Inter-Black-Semi' }}>
               {clinic.attributes.Name}
             </Text>
             <FlatList
@@ -46,9 +46,7 @@ export default function ClinicCardItem({ clinic }) {
 
             </View>
             
-            {/* <Text>{clinic.attributes.Address}</Text>
-            <Text>{clinic.attributes.Phone}</Text>
-            <Text>{clinic.attributes.Email}</Text> */}
+        
           </View>
         </View>
       ) : (

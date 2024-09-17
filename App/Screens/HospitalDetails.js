@@ -26,7 +26,7 @@ export default function HospitalDetails() {
 
   return (
     <View style={{ flex: 1, backgroundColor: Colors.white }}>
-      <ScrollView>
+      
         <View style={{ position: 'absolute', margin: 15, zIndex: 10 }}>
           <SharedHeader title={clinic?.attributes?.Name || ''} />
         </View>
@@ -48,13 +48,13 @@ export default function HospitalDetails() {
             <HospitalInfo clinic={clinic} />
           </View>
         </View>
-      </ScrollView>
+     
 
       <TouchableOpacity
         onPress={() => navigation.navigate('book-appointment', { clinic: clinic })}
         style={{ backgroundColor: Colors.primary, borderRadius: 99, padding: 13, margin: 10, left: 0, right: 0, marginBottom: 10, zIndex: 20 }}
       >
-        <Text style={{ fontSize: 20, textAlign: 'center', color: Colors.white, fontFamily: 'appFont-semibold' }}>
+        <Text style={{ fontSize: 20, textAlign: 'center', color: Colors.white, fontFamily: 'Inter-Black-Semi' }}>
           Book Appointment
         </Text>
       </TouchableOpacity>

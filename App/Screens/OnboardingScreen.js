@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet, Dimensions, ScrollView, TouchableOpacity, Image, Alert } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, Dimensions, ScrollView, TouchableOpacity, Image } from 'react-native';
+import React, { useState } from 'react';
 import Onboarding from 'react-native-onboarding-swiper';
 import LottieView from 'lottie-react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -8,7 +8,6 @@ const { width, height } = Dimensions.get('window');
 
 export default function OnboardingScreen({ onComplete }) {
   const [currentPage, setCurrentPage] = useState(0);
-  
   const navigation = useNavigation();
 
   return (
@@ -78,7 +77,7 @@ export default function OnboardingScreen({ onComplete }) {
                 </View>
                 <TouchableOpacity style={styles.loginButton} onPress={() => {
                   onComplete();
-                  navigation.navigate('Login');
+                  navigation.navigate('login');
                 }}>
                   <Text style={styles.loginButtonText}>Login</Text>
                 </TouchableOpacity>
@@ -113,44 +112,32 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   lottie: {
-    width: '100%',
-    height: 'auto',
-    aspectRatio: 1, // Maintain aspect ratio
+    width: width * 0.8,
+    height: width * 0.8,
     marginBottom: 20,
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 10,
+    color: '#000',
   },
   subtitle: {
     fontSize: 16,
     textAlign: 'center',
+    color: '#000',
   },
-  getStartedButtonContainer: {
-    position: 'absolute',
-    bottom: 20,
-    left: 0,
-    right: 0,
+  topImageContainer: {
     alignItems: 'center',
+    marginBottom: 20,
   },
-  getStartedButton: {
-    backgroundColor: '#1E90FF',
-    padding: 15,
-    borderRadius: 25,
-    alignItems: 'center',
-  },
-  getStartedButtonText: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  topImageContainer: {},
   topImage: {
     width: '100%',
     height: 130,
   },
-  helloContainer: {},
+  helloContainer: {
+    marginBottom: 10,
+  },
   helloText: {
     textAlign: 'center',
     fontSize: 70,
@@ -161,13 +148,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 18,
     color: '#262626',
+    marginBottom: 20,
   },
   loginButton: {
     backgroundColor: '#1E90FF',
     padding: 15,
     borderRadius: 25,
     alignItems: 'center',
-    marginBottom: 20,
     width: '80%',
   },
   loginButtonText: {

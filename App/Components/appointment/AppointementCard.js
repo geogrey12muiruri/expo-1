@@ -14,7 +14,7 @@ const AppointementCard = ({ appointement }) => {
 
   return (
     <View style={{ padding: 15, borderWidth: 1, borderColor: Colors.ligh_gray, borderRadius: 10, backgroundColor: Colors.white, marginTop: 10 }}>
-      <Text style={{ fontSize: 16, fontFamily: 'appFont-semibold', marginBottom: 10 }}>
+      <Text style={{ fontSize: 16, fontFamily: 'Inter-Black-Semi', marginBottom: 10 }}>
         {date} - {time}
       </Text>
 
@@ -25,14 +25,14 @@ const AppointementCard = ({ appointement }) => {
         />
 
         <View>
-          <Text style={{ fontSize: 16, fontFamily: 'appFont-semibold' }}>
+          <Text style={{ fontSize: 16, fontFamily:'Inter-Black-Semi' }}>
             {clinicName}
           </Text>
 
           {/* Address */}
           <View style={{ display: 'flex', flexDirection: 'row', gap: 5, alignItems: 'center', marginTop: 5 }}>
             <Ionicons name="location-sharp" size={20} color={Colors.primary} />
-            <Text style={{ fontFamily: 'appFont' }}>{hospitalAddress}</Text>
+            <Text style={{ fontFamily: 'Inter-Black' }}>{hospitalAddress}</Text>
           </View>
 
           {/* id */}

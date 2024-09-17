@@ -28,7 +28,7 @@ const AllDoctorCardItem = ({ doctor }) => {
           <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
             <View style={styles.headingContainer}>
               <MaterialIcons name="verified" size={20} color={Colors.primary} />
-              <Text style={{ color: Colors.primary, fontFamily: 'appFont-semibold', fontSize: 15 }}>
+              <Text style={{ color: Colors.primary, fontFamily: 'Inter-Black-Semi', fontSize: 15 }}>
                 Professional Doctor
               </Text>
             </View>
@@ -49,14 +49,14 @@ const AllDoctorCardItem = ({ doctor }) => {
           </View>
 
           <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-            <Text style={{ fontFamily: 'appFont-semibold' }}>⭐⭐⭐⭐ 4.8 </Text>
+            <Text style={{ fontFamily: 'Inter-Black-Semi' }}>⭐⭐⭐⭐ 4.8 </Text>
             <Text style={{ color: Colors.gray }}>49 Reviews</Text>
           </View>
         </View>
       </View>
 
       <TouchableOpacity style={styles.makeAppointmentContainer}>
-        <Text style={{ color: Colors.primary, fontFamily: 'appFont-semibold', fontSize: 15 }}>
+        <Text style={{ color: Colors.primary, fontFamily: 'Inter-Black-Semi', fontSize: 15 }}>
           Book Appointment
         </Text>
       </TouchableOpacity>
@@ -122,11 +122,11 @@ const styles = StyleSheet.create({
   },
   doctorName: {
     fontSize: 18,
-    fontFamily: 'appFont-bold',
+    fontFamily: 'Inter-Black-Semi',
   },
   categoryName: {
     fontSize: 14,
-    fontFamily: 'appFont-regular',
+    fontFamily: 'Inter-Black',
     color: Colors.gray,
   },
   makeAppointmentContainer: {

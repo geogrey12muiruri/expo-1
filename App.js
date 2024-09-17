@@ -1,15 +1,17 @@
 import * as SecureStore from 'expo-secure-store';
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { useFonts } from 'expo-font';
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { ClerkProvider, ClerkLoaded, SignedIn, SignedOut } from "@clerk/clerk-expo";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Login from './App/Screens/LoginScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import TabNavigation from './Navigations/TabNavigation';
 import { StatusBar } from 'expo-status-bar';
 import Toast from 'react-native-toast-message';
+import OnboardingScreen from './App/Screens/OnboardingScreen';
 
 const tokenCache = {
   async getToken(key) {
@@ -43,7 +45,25 @@ export default function Index() {
     'Inter-Black-Semi': require('./assets/fonts/Inter_18pt-SemiBold.ttf')
   });
 
-  if (!fontsLoaded) {
+  const [isOnboardingComplete, setIsOnboardingComplete] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const checkOnboardingStatus = async () => {
+      const status = await AsyncStorage.getItem('onboardingComplete');
+      setIsOnboardingComplete(status === 'true');
+      setIsLoading(false);
+    };
+
+    checkOnboardingStatus();
+  }, []);
+
+  const handleOnboardingComplete = async () => {
+    await AsyncStorage.setItem('onboardingComplete', 'true');
+    setIsOnboardingComplete(true);
+  };
+
+  if (!fontsLoaded || isLoading) {
     return <></>;
   }
 
@@ -55,7 +75,11 @@ export default function Index() {
             <StatusBar hidden />
             <NavigationContainer>
               <SignedIn>
-                <TabNavigation />
+                {isOnboardingComplete ? (
+                  <TabNavigation />
+                ) : (
+                  <OnboardingScreen onComplete={handleOnboardingComplete} />
+                )}
               </SignedIn>
               <SignedOut>
                 <Login />
@@ -73,5 +97,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+    justifyContent: "center",
   },
 });

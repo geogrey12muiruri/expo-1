@@ -18,8 +18,7 @@ export default function Home() {
       <Slider />
       <Category />
       <Clinics />
-      {/* Uncomment the following line to add a sign-out button */}
-      {/* <Button title="Sign Out" onPress={() => signOut()} /> */}
+ 
     </ScrollView>
   );
 }

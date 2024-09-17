@@ -22,12 +22,12 @@ const ActionButton = () => {
         {
             id: 2,
             name: 'Phone',
-            icon: 'md-call'
+            icon: 'call'
         },
         {
             id: 3,
             name: 'Location',
-            icon: 'ios-location-sharp'
+            icon: 'location'
         },
         {
             id: 4,
@@ -48,12 +48,12 @@ const ActionButton = () => {
                 renderItem={({ item }) => (
                     <TouchableOpacity style={{ alignItems: 'center' }}>
                         <View style={{
-                            backgroundColor: Colors.secondary, padding: 13, borderRadius
+                            backgroundColor: Colors.SECONDARY, padding: 13, borderRadius
                                 : 99, alignItems: 'center', width: 55,
                         }}>
                             <Ionicons name={item.icon} size={26} color={Colors.primary} />
                         </View>
-                        <Text style={{ fontFamily: 'appFont-semibold', marginTop: 5 }}>
+                        <Text style={{ fontFamily: 'Inter-Black-Semi', marginTop: 5 }}>
                             {item.name}
                         </Text>
                     </TouchableOpacity>

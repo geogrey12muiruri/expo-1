@@ -4,7 +4,7 @@ import { View, Text, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Colors from '../Shared/Colors';
 import SharedHeader from '../common/SharedHeader';
-
+import EvilIcons from '@expo/vector-icons/EvilIcons';
 
 const HospitalAppointementInfo = ({ clinic }) => {
   // Check if clinic and clinic.attributes are defined
@@ -34,11 +34,11 @@ const HospitalAppointementInfo = ({ clinic }) => {
 
         {/* name - address */}
         <View>
-          <Text style={{ fontFamily: 'appFont-semibold', fontSize: 20, marginBottom: 8 }}>{clinic.attributes.Name}</Text>
+          <Text style={{ fontFamily:'Inter-Black-Semi', fontSize: 20, marginBottom: 8 }}>{clinic.attributes.Name}</Text>
           {/* Address */}
           <View style={{ display: 'flex', flexDirection: 'row', gap: 5, alignItems: 'center' }}>
-            <Ionicons name="location-sharp" size={22} color="black" />
-            <Text style={{ fontSize: 18, fontFamily: 'appFont', color: Colors.gray, width: '80%' }}>
+          <EvilIcons name="location" size={24} color="black" />
+            <Text style={{ fontSize: 18, fontFamily: 'Inter-Black', color: Colors.gray, width: '80%' }}>
               {clinic.attributes.Address}
             </Text>
           </View>
